@@ -6,10 +6,6 @@ import { UserContext } from '../UserContext';
 
 const Header = () => {
   let { data } = React.useContext(UserContext);
-  data = {
-    //RETIRAR
-    nome: 'dog',
-  };
   return (
     <header className={styles.header}>
       <nav className={`${styles.nav} container`}>

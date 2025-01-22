@@ -69,8 +69,6 @@ export const UserStorage = ({ children }) => {
         }
       } else {
         setLogin(false);
-        setLogin(true); //RETIRAR
-        setData({ id: 0, username: 'cat' }); //RETIRAR
       }
     }
     autoLogin();

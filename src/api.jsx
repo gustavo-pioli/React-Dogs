@@ -5,8 +5,8 @@ export function TOKEN_POST(body) {
     url: API_URL + '/jwt-auth/v1/token',
     options: {
       method: 'POST',
-      header: {
-        'Content-type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
     },
@@ -18,8 +18,8 @@ export function TOKEN_VALIDATE_POST(token) {
     url: API_URL + '/jwt-auth/v1/token/validate',
     options: {
       method: 'POST',
-      header: {
-        Authorization: 'Bearer' + token,
+      headers: {
+        Authorization: 'Bearer ' + token,
       },
     },
   };
@@ -30,8 +30,8 @@ export function USER_GET(token) {
     url: API_URL + '/api/user',
     options: {
       method: 'GET',
-      header: {
-        Authorization: 'Bearer' + token,
+      headers: {
+        Authorization: 'Bearer ' + token,
       },
     },
   };
@@ -42,8 +42,8 @@ export function USER_POST(body) {
     url: API_URL + '/api/user',
     options: {
       method: 'POST',
-      header: {
-        'Content-type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
     },
@@ -55,8 +55,8 @@ export function PHOTO_POST(formData, token) {
     url: API_URL + '/api/photo',
     options: {
       method: 'POST',
-      header: {
-        Authorization: 'Bearer' + token,
+      headers: {
+        Authorization: 'Bearer ' + token,
       },
       body: formData,
     },
@@ -65,7 +65,7 @@ export function PHOTO_POST(formData, token) {
 
 export function PHOTOS_GET({ page, total, user }) {
   return {
-    url: API_URL + `/api/photo/?_page=${page}&_total=${total}&_user=${user}`,
+    url: `${API_URL}/api/photo/?_page=${page}&_total=${total}&_user=${user}`,
     options: {
       method: 'GET',
       cache: 'no-store',
@@ -75,7 +75,7 @@ export function PHOTOS_GET({ page, total, user }) {
 
 export function PHOTO_GET(id) {
   return {
-    url: API_URL + `/api/photo/${id}`,
+    url: `${API_URL}/api/photo/${id}`,
     options: {
       method: 'GET',
       cache: 'no-store',
@@ -85,12 +85,12 @@ export function PHOTO_GET(id) {
 
 export function COMMENT_POST(id, body) {
   return {
-    url: API_URL + `/api/photo/${id}`,
+    url: `${API_URL}/api/comment/${id}`,
     options: {
       method: 'POST',
       headers: {
-        'Content-type': 'application/json',
-        Authorization: 'Bearer' + window.localStorage.getItem('token'),
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + window.localStorage.getItem('token'),
       },
       body: JSON.stringify(body),
     },
@@ -99,11 +99,11 @@ export function COMMENT_POST(id, body) {
 
 export function PHOTO_DELETE(id) {
   return {
-    url: API_URL + `/api/photo/${id}`,
+    url: `${API_URL}/api/photo/${id}`,
     options: {
       method: 'DELETE',
       headers: {
-        Authorization: 'Bearer' + window.localStorage.getItem('token'),
+        Authorization: 'Bearer ' + window.localStorage.getItem('token'),
       },
     },
   };
@@ -113,9 +113,9 @@ export function PASSWORD_LOST(body) {
   return {
     url: API_URL + '/api/password/lost',
     options: {
-      methord: 'POST',
+      method: 'POST',
       headers: {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
     },
@@ -126,9 +126,9 @@ export function PASSWORD_RESET(body) {
   return {
     url: API_URL + '/api/password/reset',
     options: {
-      methord: 'POST',
+      method: 'POST',
       headers: {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
     },
@@ -139,7 +139,7 @@ export function STATS_GET() {
   return {
     url: API_URL + '/api/stats',
     options: {
-      methord: 'GET',
+      method: 'GET',
       headers: {
         Authorization: 'Bearer ' + window.localStorage.getItem('token'),
       },
