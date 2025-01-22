@@ -5,8 +5,11 @@ import Dogs from '../Assets/dogs.svg?react';
 import { UserContext } from '../UserContext';
 
 const Header = () => {
-  const { data } = React.useContext(UserContext);
-
+  let { data } = React.useContext(UserContext);
+  data = {
+    //RETIRAR
+    nome: 'dog',
+  };
   return (
     <header className={styles.header}>
       <nav className={`${styles.nav} container`}>

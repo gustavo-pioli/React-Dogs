@@ -18,7 +18,6 @@ export const UserStorage = ({ children }) => {
       setLoading(false);
       setLogin(false);
       window.localStorage.removeItem('token');
-      navigate('/login');
     },
     [navigate],
   );
@@ -37,7 +36,9 @@ export const UserStorage = ({ children }) => {
       setLoading(true);
       const { url, options } = TOKEN_POST({ username, password });
       const tokenRes = await fetch(url, options);
-      if (!tokenRes.ok) throw new Error(`Error: ${tokenRes.statusText}`);
+
+      if (!tokenRes.ok) throw new Error(`Error: ${tokenRes.status}`);
+
       const { token } = await tokenRes.json();
       window.localStorage.setItem('token', token);
       await getUser(token);
@@ -66,10 +67,14 @@ export const UserStorage = ({ children }) => {
         } finally {
           setLoading(false);
         }
+      } else {
+        setLogin(false);
+        setLogin(true); //RETIRAR
+        setData({ id: 0, username: 'cat' }); //RETIRAR
       }
     }
     autoLogin();
-  }, [userLogout]);
+  }, [userLogout, navigate]);
 
   return (
     <UserContext.Provider
